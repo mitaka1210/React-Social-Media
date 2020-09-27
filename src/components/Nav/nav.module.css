@@ -1,0 +1,26 @@
+.nav {
+	grid-area: n;
+	background-color: green;
+	text-align: center;
+}
+
+.item a {
+	color: rgb(184, 146, 97);
+
+	text-decoration: none;
+}
+
+.item {
+	padding: 10px 0;
+
+	list-style: none;
+}
+
+.item:hover {
+	text-decoration: underline;
+	background-color: aqua;
+}
+
+.activeLink {
+	background-color: red;
+}

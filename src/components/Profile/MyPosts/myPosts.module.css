@@ -1,0 +1,20 @@
+.postblock {
+  padding: 10px;
+}
+.sendText {
+  display: flex;
+  flex-flow: column wrap;
+}
+button {
+  width: 7em;
+  height: 3em;
+  margin: 5px 0;
+}
+textarea {
+  resize: none;
+  width: 10em;
+  height: 5em;
+}
+.posts {
+  margin: 15px 0;
+}
