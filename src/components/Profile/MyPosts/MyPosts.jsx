@@ -9,6 +9,7 @@ function MyPosts() {
     { id: 3, message: 'Here?', likeCounts: 33 },
     { id: 4, message: 'Do you want go eat?', likeCounts: 1 },
     { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
+    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
   ];
 
   return (
