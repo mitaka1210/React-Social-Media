@@ -8,6 +8,7 @@ function MyPosts() {
     { id: 2, message: "It's my first post", likeCounts: 11 },
     { id: 3, message: 'Here?', likeCounts: 33 },
     { id: 4, message: 'Do you want go eat?', likeCounts: 1 },
+    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
   ];
 
   return (
