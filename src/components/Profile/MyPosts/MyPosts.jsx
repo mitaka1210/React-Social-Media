@@ -11,6 +11,10 @@ function MyPosts() {
     { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
     { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
     { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
+    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
+    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
+    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
+    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
   ];
 
   return (
