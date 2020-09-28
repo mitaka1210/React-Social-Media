@@ -1,16 +1,10 @@
 import React from 'react';
 import style from './myPosts.module.css';
 import Post from './Post/Post';
+import message from '../../../Data/Data';
 
-function MyPosts() {
-  let postData = [
-    { id: 1, message: 'Hi, how are u?', likeCounts: 12 },
-    { id: 2, message: "It's my first post", likeCounts: 11 },
-    { id: 3, message: 'Here?', likeCounts: 33 },
-    { id: 4, message: 'Do you want go eat?', likeCounts: 1 },
-    { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
-  ];
-
+function MyPosts(props) {
+  let postsElements = props.posts.map((p) => <Post message={p.message} likeCount={p.likeCounts} />);
   return (
     <div className={style.postblock}>
       <h2>My Post</h2>
@@ -18,11 +12,7 @@ function MyPosts() {
         <textarea></textarea>
         <button>Add post</button>
       </div>
-      <div className={style.posts}>
-        <Post message={postData[0].message} likeCount={postData[0].likeCounts} />
-        <Post message={postData[1].message} likeCount={postData[1].likeCounts} />
-        <Post message={postData[2].message} likeCount={postData[2].likeCounts} />
-      </div>
+      <div className={style.posts}>{postsElements}</div>
     </div>
   );
 }

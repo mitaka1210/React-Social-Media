@@ -1,21 +1,26 @@
 import React from 'react';
-
 import './App.css';
 import { Dialogs, Profile, News, Music, NavBar, Header } from './components';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-function App() {
+let NewsPage = () => <News />;
+
+function App(props) {
+  let ProfilePage = () => <Profile posts={props.posts} />;
   return (
     <Router>
       <div className="app-wrapper">
-        <Header/>
+        <Header />
         <NavBar />
         <div className="app-wrapper-content">
-          <Route path="/dialogs" component={Dialogs} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/news" component={News} />
-          <Route path="/music" component={Music} />
+          <Route
+            path="/dialogs"
+            render={() => <Dialogs dialogs={props.dialogs} messages={props.messages} />}
+          />
 
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/news" render={NewsPage} />
+          <Route path="/music" render={() => <Music />} />
         </div>
       </div>
     </Router>
