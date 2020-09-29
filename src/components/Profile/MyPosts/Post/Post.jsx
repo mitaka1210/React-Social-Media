@@ -6,7 +6,7 @@ function Post(props) {
     <div>
       <ul>
         <li className={`${style.post} ${style.bg}`}>
-          {props.messages}
+          {props.message}
           <img
             src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=793&q=80"
             alt=""

@@ -4,14 +4,16 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 function Profile(props) {
-  debugger;
   return (
-    <main>
-      <div>
-        <ProfileInfo />
-        <MyPosts posts={props.posts} />
-      </div>
-    </main>
+    <div>
+      <ProfileInfo />
+      <MyPosts
+        posts={props.profilePage.posts}
+        addPost={props.addPost}
+        newPostText={props.profilePage.newPostText}
+        updateNewPostText={props.updateNewPostText}
+      />
+    </div>
   );
 }
 
