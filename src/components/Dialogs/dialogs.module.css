@@ -6,7 +6,7 @@
   padding: 10px;
 }
 .dialogsItems .active {
-  color: goldenrod;
+  color: #daa520;
 }
 .dialogsItems .active:hover {
   background-color: red;

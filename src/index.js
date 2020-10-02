@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import state from './Data/Data';
+import store from './Data/Data';
 import App from './App';
 
-import { addPost, subscribe, updateNewPostText } from './Data/Data';
+// import { addPost, subscribe, updateNewPostText } from './Data/Data';
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} />
+      <App state={state} dispatch={store.dispatch.bind(store)}  />
     </React.StrictMode>,
     document.getElementById('root'),
   );
 };
-rerenderEntireTree(state);
-subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());
+store.subscribe(rerenderEntireTree);
