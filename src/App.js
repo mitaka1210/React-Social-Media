@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Dialogs, Profile, News, Music, NavBar, Header } from './components';
+import {  Profile, News, Music, NavBar, Header } from './components';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 function App(props) {
   //let ProfilePages = () => (
@@ -12,23 +13,25 @@ function App(props) {
   //  />
   //);
   let NewsPage = () => <News />;
+
   return (
     <Router>
       <div className="app-wrapper">
         <Header />
         <NavBar />
+
         <div className="app-wrapper-content">
-
-          <Route path="/dialogs" render={()=> <Dialogs store={props.store}/>} />
-
+          {/*TODO: DIALOGS PAGE*/}
+          <Route path="/dialogs"
+                 render={()=> (
+                     <DialogsContainer store={props.store}/>
+                     )}
+          />
+         {/* TODO: PROFILE PAGE*/}
           <Route
             path="/profile"
             render={() => (
-              <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-
-              />
+              <Profile store={props.store}/>
             )}
           />
           {/*<Route path="/profile" component={ProfilePages} />*/}

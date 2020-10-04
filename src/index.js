@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import store from './Data/Data';
+import store from './redux/redux-store';
 import App from './App';
 
-// import { addPost, subscribe, updateNewPostText } from './Data/Data';
 
 let rerenderEntireTree = (state) => {
+
   ReactDOM.render(
     <React.StrictMode>
       <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
@@ -15,4 +15,7 @@ let rerenderEntireTree = (state) => {
   );
 };
 rerenderEntireTree(store.getState());
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+    let state = store.getState();
+    rerenderEntireTree(state);
+});
