@@ -4,14 +4,8 @@ import {  Profile, News, Music, NavBar, Header } from './components';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-function App(props) {
-  //let ProfilePages = () => (
-  //  <Profile
-  //    profilePage={props.state.profilePage}
-  //    addPost={props.addPost}
-  //    updateNewPostText={props.updateNewPostText}
-  //  />
-  //);
+function App() {
+
   let NewsPage = () => <News />;
 
   return (
@@ -23,18 +17,12 @@ function App(props) {
         <div className="app-wrapper-content">
           {/*TODO: DIALOGS PAGE*/}
           <Route path="/dialogs"
-                 render={()=> (
-                     <DialogsContainer store={props.store}/>
-                     )}
-          />
+                 render={()=> (<DialogsContainer />)}/>
          {/* TODO: PROFILE PAGE*/}
           <Route
             path="/profile"
-            render={() => (
-              <Profile store={props.store}/>
-            )}
-          />
-          {/*<Route path="/profile" component={ProfilePages} />*/}
+            render={() => (<Profile />)}/>
+
           <Route path="/news" render={NewsPage} />
           <Route path="/music" render={() => <Music />} />
         </div>
