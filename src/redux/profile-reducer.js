@@ -14,23 +14,62 @@ let initialState = {
 
  const  profileReducer = (state = initialState, action) => {
 
-    if (action.type === ADD_POST){
-        let newPost = {
-            id: 5,
-            message: state.newPostText,
-            likesCount: 0,
-        };
-        state.posts.push(newPost);
-        state.newPostText = '';
 
+    switch (action.type) {
+        case ADD_POST: {
+            let newPost = {
+                id: 5,
+                message: state.newPostText,
+                likesCount: 0,
+            };
+//*===========================================================================*//
+            // TODO: COPY ARRAY//
+
+            let stateCopy1 = {...state};
+            stateCopy1.posts = [...state.posts]
+            stateCopy1.posts.push(newPost);
+            stateCopy1.newPostText = '';
+            return stateCopy1
+        }
+
+        case UPDATE_NEW_POST_TEXT : {
+
+//*==============================================================================*//
+            // TODO: COPY ARRAY//
+
+            let stateCopy2 = {...state};
+            stateCopy2.newPostText = action.newText;
+            return stateCopy2
+
+        }
+        default:
+            return state;
     }
-    else if (action.type === UPDATE_NEW_POST_TEXT) {
 
-        state.newPostText = action.newText;
 
-    }
 
-    return state;
+
+
+    // if (action.type === ADD_POST){
+    //     let newPost = {
+    //         id: 5,
+    //         message: state.newPostText,
+    //         likesCount: 0,
+    //     };
+    //     let stateCopy1 = {...state};
+    //     stateCopy1.posts = [...state.posts]
+    //     stateCopy1.posts.push(newPost);
+    //     stateCopy1.newPostText = '';
+    //     return stateCopy1
+    // }
+    // else if (action.type === UPDATE_NEW_POST_TEXT) {
+    //     let stateCopy2 = {...state};
+    //     stateCopy2.newPostText = action.newText;
+    //     return stateCopy2
+    //
+    // }
+
+
 
 }
 

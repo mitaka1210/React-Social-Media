@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import store from './redux/redux-store';
 import App from './App';
-import {Provider} from './StoreContext';
-
-let rerenderEntireTree = () => {
+import {Provider} from 'react-redux';
 
   ReactDOM.render(
     <React.StrictMode>
@@ -15,9 +13,5 @@ let rerenderEntireTree = () => {
     </React.StrictMode>,
     document.getElementById('root')
   );
-};
-rerenderEntireTree();
 
-store.subscribe(() => {
-    rerenderEntireTree()
-});
+
