@@ -27,23 +27,37 @@ let initialState = {
 }
 const dialogsReducer =(state = initialState,action) => {
 
-
-
+// TODO: обявяваме променлива: stateCopy
+    let stateCopy;
     switch (action.type){
 
         case UPDATE_NEW_MESSAGE_BODY:{
-            let stateCopy = {...state };
+            // 1. копираме целия обект initialState  и след това само newMessageBody
+            // 2. Обектът сам  се създава и после се връща без да обявяваме променлива както е в долния case.
+           return {
+               ...state,
+                newMessageBody: action.body
+            };
 
-            stateCopy.newMessageBody = action.body;
-            return stateCopy
         }
 
         case SEND_MESSAGE: {
-            let stateCopy3 = {...state}
-            let body = [...state.newMessageBody]
-            stateCopy3.messages.push({id: 6, message: body });
-            stateCopy3.newMessageBody='';
-            return stateCopy3
+
+            let body = state.newMessageBody;
+
+            stateCopy = {
+                ...state,
+                newMessageBody: '',
+                // TODO: добавяме в messages нов масив с стария самив и в края добавяме това което е push при натискане на бутона SEND
+                messages: [...state.messages, {id: 6, message: body }]
+            };
+
+
+            return stateCopy;
+            // TODO: messages: [...state.messages, {id: 6, message: body }] - съкратения вариатн на долното
+            // stateCopy3.messages.push({id: 6, message: body });
+            // stateCopy3.newMessageBody='';
+
         }
 
 

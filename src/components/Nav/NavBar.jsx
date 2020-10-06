@@ -31,6 +31,11 @@ function NavBar() {
             Settings
           </NavLink>
         </li>
+        <li className={style.item}>
+          <NavLink to="/users" activeClassName={style.activeLink}>
+            Users
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

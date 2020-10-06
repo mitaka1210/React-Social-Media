@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import {  Profile, News, Music, NavBar, Header } from './components';
+import {  Profile, News,Users, Music, NavBar, Header } from './components';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App() {
 
@@ -22,7 +23,9 @@ function App() {
           <Route
             path="/profile"
             render={() => (<Profile />)}/>
-
+          <Route
+              path="/users"
+              render={() => (<UsersContainer />)}/>
           <Route path="/news" render={NewsPage} />
           <Route path="/music" render={() => <Music />} />
         </div>

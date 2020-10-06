@@ -27,7 +27,11 @@ function MyPosts(props) {
     <div className={style.postblock}>
       <h2>My Post</h2>
       <div className={style.sendText}>
-        <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
+        <textarea
+            onChange={onPostChange}
+            ref={newPostElement}
+            value={props.newPostText}>
+        </textarea>
         <button onClick={onAddPost}>Add post</button>
       </div>
       <div className={style.posts}>{postsElements}</div>
