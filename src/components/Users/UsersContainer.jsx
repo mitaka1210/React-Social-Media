@@ -22,7 +22,7 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(setUsersAC(users))
         }
     }
-}
+};
 
 
 export default connect (mapStateToProps, mapDispatchToProps) (Users);
