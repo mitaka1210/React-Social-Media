@@ -3,3 +3,12 @@
 
     height: 100px;
 }
+
+.pageNum{
+    width: 100%;
+    max-width: 400px;
+}
+.selectedPAge {
+    font-size: 2em;
+    font-weight: bold;
+}

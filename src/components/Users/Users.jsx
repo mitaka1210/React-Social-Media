@@ -5,21 +5,55 @@ import * as axios from "axios";
 
  class Users extends Component {
 
-     getUsers = () => {
-         if (this.props.users.length === 0) {
-             // TODO: Въпрос на сървъра
-             axios.get("https://social-network.samuraijs.com/api/1.0/users")
 
-                 .then(response => {
+        // TODO: Метод жизнен цикъл - Life cycle
+        componentDidMount() {
+            // TODO: Въпрос на сървъра
 
-                     this.props.setUsers(response.data.items)
-                 });
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+
+                .then(response => {
+                    this.props.setUsers(response.data.items);
+                    // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
+                    // this.props.setTotalUsersCount(response.data.totalCount);
+                });
+        };
+
+        onPageChanged = (pageNumber) => {
+            this.props.setCurrentPage(pageNumber);
+            axios.get
+            (`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+
+                .then(response => {
+
+                    this.props.setUsers(response.data.items)
+                });
+        }
+
+
+     render() {
+
+         let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
+         let pages = [];
+
+         for (let  i =1 ; i <= pagesCount; i++){
+
+             pages.push(i);
          }
-     }
+        //  pagesCount.forEach( e=>{
+        //     pages.push(e);
+        // })
 
-  render() {
       return  <div>
-          <button onClick={this.getUsers}>Get users</button>
+          <div className={styles.pageNum}>
+              {pages.map((p) => {
+                  return <span
+                    onClick={() =>this.onPageChanged(p)}
+                    className={ this.props.currentPage === p && styles.selectedPAge}>{p}</span>})
+              }
+
+          </div>
+
           {this.props.users.map((u) =>  <div key={u.id}>
                     <span>
                         <div className={styles.usersPhoto}>
