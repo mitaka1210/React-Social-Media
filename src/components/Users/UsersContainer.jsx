@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import Users from "./Users";
 import {connect} from 'react-redux';
 import {
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC,
-    toggleIsFetchingAC,
-    unfollowAC
+    follow,
+    setCurrentPage,
+    setUsers,
+    setUsersTotalCount,
+    toggleIsFetching,
+    unfollow
 } from '../../redux/users-reducer';
 
 // TODO: SERVER GET
@@ -86,30 +86,38 @@ let mapStateToProps = (state) => {
     }
 
 }
+// TODO: Това е по дългия запис на обекта който е в connect{follow,unfollow,setUsers,setCurrentPage,toggleIsFetching} защото в негоима вграден mapToDispatchProps
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => {
+//             dispatch(followAC(userId));
+//         },
+//         unfollow: (userId) => {
+//             dispatch(unfollowAC(userId));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (pageNumber) => {
+//             dispatch(setCurrentPageAC(pageNumber));
+//         },
+//         toggleIsFetching: (isFetching) =>{
+//             dispatch(toggleIsFetchingAC(isFetching))
+//         },
+//         setTotalUsersCount: (totalCount) => {
+//             dispatch(setUsersTotalCountAC(totalCount));
+//         }
+//     }
+// };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        toggleIsFetching: (isFetching) =>{
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-        // setTotalUsersCount: (totalCount) => {
-        //     dispatch(setUsersTotalCountAC(totalCount));
-        // }
-    }
-};
 
-
-export default connect (mapStateToProps, mapDispatchToProps) (UsersContainer);
+export default connect (mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    toggleIsFetching,
+    // setUsersTotalCount //
+    })
+    (UsersContainer);
 

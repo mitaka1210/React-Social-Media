@@ -78,10 +78,10 @@ const usersReducer =(state = initialState,action) => {
 }
 // TODO: КРАТКИЯ ВАРИАНТ НА ДВАТА ACTION доло
 
-export const followAC = (userId) => ({ type: FOLLOW, userId})
+export const follow = (userId) => ({ type: FOLLOW, userId})
 
 
-export const unfollowAC = (userId) => {
+export const unfollow = (userId) => {
 
     return {
         type: UNFOLLOW,
@@ -90,10 +90,10 @@ export const unfollowAC = (userId) => {
     }
 }
 //
-export const setUsersAC = (users) => ({type: SET_USERS, users})
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage})
-export const toggleIsFetchingAC = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFetching  })
-// export const setUsersTotalCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count:totalUsersCount})
+export const setUsers = (users) => ({type: SET_USERS, users})
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage})
+export const toggleIsFetching = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFetching  })
+// export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count:totalUsersCount})
 
 
 
