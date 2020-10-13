@@ -1,9 +1,29 @@
-.header>img {
-	width: 50px;
-	height: 50px;
+.header > img {
+  width: 50px;
+  height: 50px;
 }
 
 .header {
-	grid-area: h;
-	background-color: green;
+  grid-area: h;
+  background-color: green;
+}
+
+.loginBlock {
+  background-color: indigo;
+
+  float: right;
+  position: relative;
+  right: 15em;
+  top: 1em;
+
+  width: 8em;
+  height: 2em;
+  text-align: center;
+}
+
+.loginBlock a {
+  position: relative;
+  top: 2px;
+  color: khaki;
+  text-decoration: none;
 }

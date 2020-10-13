@@ -1,14 +1,15 @@
 .usersPhoto img {
-    width: 100px;
-
-    height: 100px;
+  width: 100px;
+  cursor: pointer;
+  height: 100px;
 }
 
-.pageNum{
-    width: 100%;
-    max-width: 400px;
+.pageNum {
+  width: 100%;
+  max-width: 400px;
 }
 .selectedPAge {
-    font-size: 2em;
-    font-weight: bold;
+  font-size: 2em;
+  cursor: pointer;
+  font-weight: bold;
 }

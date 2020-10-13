@@ -1,6 +1,6 @@
 .descriptionBlock {
   padding: 10px;
 }
-.FBContact {
-  display: block;
+.descriptionBlock img {
+  cursor: pointer;
 }
