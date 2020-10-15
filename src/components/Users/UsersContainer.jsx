@@ -8,6 +8,7 @@ import {
   setTotalUsersCount,
   toggleIsFetching,
   unfollow,
+  toggleFollowingInProgress,
 } from '../../redux/users-reducer';
 import { getUsers } from '../../api/api';
 
@@ -17,7 +18,7 @@ import * as axios from 'axios';
 // TODO: IMAGES
 
 import Preloader from '../common/Preloader/Preloader';
-
+//! getUsers изнасяме логиката в друг файл за да напарвим функцията ЧИСТА тя трябва само да рисува и държи връзка с потребителя.
 class UsersContainer extends Component {
   // TODO: Метод жизнен цикъл - Life cycle
   componentDidMount() {
@@ -53,6 +54,8 @@ class UsersContainer extends Component {
           onPageChanged={this.onPageChanged}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
+          toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+          followingInProgress={this.props.followingInProgress}
         />
       </>
     );
@@ -67,6 +70,7 @@ let mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress,
   };
 };
 // TODO: Това е по дългия запис на обекта който е в connect{follow,unfollow,setUsers,setCurrentPage,toggleIsFetching} защото в негоима вграден mapToDispatchProps
@@ -100,4 +104,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   toggleIsFetching,
   setTotalUsersCount,
+  toggleFollowingInProgress,
 })(UsersContainer);
