@@ -1,10 +1,11 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 import authReducer from './auth-reducer';
+import thunkMiddleware from 'redux-thunk';
 
 let reducers = combineReducers({
   dialogsPage: dialogsReducer,
@@ -14,7 +15,7 @@ let reducers = combineReducers({
   auth: authReducer,
 });
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
 //! Ako искаме да можем да викаме store в конзолата на Chrome и да проверим какво ни връща като информация в този случй пишем store.getState().profilePage.profile и вуждаме какво има в profil като данни.
 
 window.store = store;

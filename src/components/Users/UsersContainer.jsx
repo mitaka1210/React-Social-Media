@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
 import {
-  follow,
+  followSuccess,
   setCurrentPage,
-  setUsers,
-  setTotalUsersCount,
-  toggleIsFetching,
-  unfollow,
+  unfollowSuccess,
+  getUsers,
   toggleFollowingInProgress,
 } from '../../redux/users-reducer';
-import { getUsers } from '../../api/api';
-
-// TODO: SERVER GET
-import * as axios from 'axios';
 
 // TODO: IMAGES
 
@@ -22,24 +16,11 @@ import Preloader from '../common/Preloader/Preloader';
 class UsersContainer extends Component {
   // TODO: Метод жизнен цикъл - Life cycle
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-
-    // TODO: Въпрос на сървъра
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.toggleIsFetching(true);
-    getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsers(pageNumber, this.props.pageSize);
   };
 
   render() {
@@ -52,8 +33,8 @@ class UsersContainer extends Component {
           pageSize={this.props.pageSize}
           users={this.props.users}
           onPageChanged={this.onPageChanged}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
+          follow={this.props.followSuccess}
+          unfollow={this.props.unfollowSuccess}
           toggleFollowingInProgress={this.props.toggleFollowingInProgress}
           followingInProgress={this.props.followingInProgress}
         />
@@ -98,11 +79,9 @@ let mapStateToProps = (state) => {
 // };
 
 export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setUsers,
+  followSuccess,
+  unfollowSuccess,
   setCurrentPage,
-  toggleIsFetching,
-  setTotalUsersCount,
   toggleFollowingInProgress,
+  getUsers,
 })(UsersContainer);

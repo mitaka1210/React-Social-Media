@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api';
+
 //! Избягване на грешки при изписването на имената на case:
 
 const FOLLOW = 'FOLLOW';
@@ -77,7 +79,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         followingInProgress: action.isFetching
           ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter((id) => id != action.userId),
+          : state.followingInProgress.filter((id) => id !== action.userId),
       };
     }
 
@@ -87,9 +89,9 @@ const usersReducer = (state = initialState, action) => {
 };
 // TODO: КРАТКИЯ ВАРИАНТ НА ДВАТА ACTION доло
 
-export const follow = (userId) => ({ type: FOLLOW, userId });
+export const followSuccess = (userId) => ({ type: FOLLOW, userId });
 
-export const unfollow = (userId) => {
+export const unfollowSuccess = (userId) => {
   return {
     type: UNFOLLOW,
     userId: userId,
@@ -112,5 +114,44 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({
   isFetching: isFetching,
   userId: userId,
 });
+
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true));
+
+    // TODO: Въпрос на сървъра
+    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+export const follow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true, userId));
+
+    // TODO: Въпрос на сървъра
+    usersAPI.follow(userId).then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(followSuccess(userId));
+      }
+      dispatch(toggleFollowingInProgress(false, userId));
+    });
+  };
+};
+export const unfollow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true, userId));
+
+    // TODO: Въпрос на сървъра
+    usersAPI.unfollow(userId).then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(unfollowSuccess(userId));
+      }
+      dispatch(toggleFollowingInProgress(false, userId));
+    });
+  };
+};
 
 export default usersReducer;
