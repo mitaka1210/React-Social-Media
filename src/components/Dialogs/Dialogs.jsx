@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './dialogs.module.css';
-
+import {Redirect} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+
 
 function Dialogs(props) {
 
@@ -23,6 +23,12 @@ function Dialogs(props) {
     let onNewMessageChange = (e) => {
       let body = e.target.value;
    props.updateNewMessageBody(body);
+};
+//! проверяваме да ли сме логнати 
+    //TODO: краткия запис на (props.isAuth === false) е
+    //TODO: (!props.isAuth )
+    if (props.isAuth === false){
+      return <Redirect to={'/login'} />
 };
   return (
     <div className={style.dialogs}>

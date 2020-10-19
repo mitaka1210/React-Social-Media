@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {
   News,
-  Users,
+  Login,
   ProfileContainer,
   HeaderContainer,
   DialogsContainer,
@@ -30,6 +30,7 @@ function App() {
           <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/news" render={NewsPage} />
           <Route path="/music" render={() => <Music />} />
+          <Route path="/login" render={() => <Login />} />
         </div>
       </div>
     </Router>

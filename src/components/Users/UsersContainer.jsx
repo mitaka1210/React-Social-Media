@@ -8,7 +8,8 @@ import {
   getUsers,
   toggleFollowingInProgress,
 } from '../../redux/users-reducer';
-
+import {compose} from 'redux';
+import {withAuthRedirect} from '../HOC/withAuthRedirect';
 // TODO: IMAGES
 
 import Preloader from '../common/Preloader/Preloader';
@@ -77,11 +78,21 @@ let mapStateToProps = (state) => {
 //         }
 //     }
 // };
-
-export default connect(mapStateToProps, {
+export default compose (
+  withAuthRedirect,
+  connect(mapStateToProps, {
   followSuccess,
   unfollowSuccess,
   setCurrentPage,
   toggleFollowingInProgress,
   getUsers,
-})(UsersContainer);
+}))(UsersContainer);
+
+//! Without compose
+//export default connect(mapStateToProps, {
+//  followSuccess,
+//  unfollowSuccess,
+//  setCurrentPage,
+//  toggleFollowingInProgress,
+//  getUsers,
+//})(UsersContainer)

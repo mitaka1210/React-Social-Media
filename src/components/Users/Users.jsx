@@ -23,7 +23,7 @@ function Users(props) {
       <div className={styles.pageNum}>
         {pages.map((p) => {
           return (
-            <span
+            <span key={p.id}
               className={props.currentPage === p ? styles.selectedPAge : null}
               onClick={(e) => {
                 props.onPageChanged(p);

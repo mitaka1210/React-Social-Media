@@ -1,8 +1,9 @@
 import React from 'react';
 import Profile from './Profile';
-import * as axios from 'axios';
+import {compose} from 'redux';
+import {getUserProfile} from '../../redux/profile-reducer';
 import { connect } from 'react-redux';
-import { setUserProfile } from '../../redux/profile-reducer';
+import {withAuthRedirect} from '../HOC/withAuthRedirect';
 import { withRouter } from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
@@ -11,16 +12,10 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-
-      .then((response) => {
-        this.props.setUserProfile(response.data);
-        // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
-        // this.props.setTotalUsersCount(response.data.totalCount);
-      });
+    this.props.getUserProfile(userId);
   }
   render() {
+
     return (
       <div>
         <Profile {...this.props} profile={this.props.profile} />
@@ -29,10 +24,22 @@ class ProfileContainer extends React.Component {
   }
 }
 
+
+//let AuthRedirectComponent  = withAuthRedirect(ProfileContainer);
+
+
+
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+ 
 });
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, { setUserProfile })(WithUrlDataContainerComponent);
+//let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+//! Without compose
+//export default connect(mapStateToProps, { getUserProfile })(WithUrlDataContainerComponent);
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withRouter,
+  withAuthRedirect
+) (ProfileContainer)

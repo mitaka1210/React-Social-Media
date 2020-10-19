@@ -4,3 +4,11 @@
 .descriptionBlock img {
   cursor: pointer;
 }
+.infoUser {
+  display: flex;
+  flex-direction: column;
+  background-color: brown;
+}
+.FBContact {
+  background-color: lawngreen;
+}
