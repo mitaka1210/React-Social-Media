@@ -3,8 +3,11 @@ import styles from '../ProfileInfo/profileinfo.module.css';
 
  
  export class ProfileStatus extends Component {
+
+
 	 state= {
-		 editMode: false
+		 editMode: false,
+		 status: this.props.status
 	 }
 
 	 activateEditMode = () => {
@@ -21,21 +24,48 @@ import styles from '../ProfileInfo/profileinfo.module.css';
 		 console.log(this.state.editMode) //!  editMode === FALSE
 		 this.setState(
 			 {
-				editMode: false
+				editMode: false,
+				
 			 }
 		 )
+		 this.props.updateStatus(this.state.status);
 		 console.log(this.state.editMode) //! editMode  === FALSE
 		
 	 }
+	 onStatusChange = (e) => {
+			this.setState({
+				status: e.currentTarget.value
+			});
+			
+	 }
+
+	 	//TODO: синхронизираме status
+	 componentDidUpdate(prevProps, prevState) {
+				if(prevProps.status !== this.props.status) {
+					this.setState({
+						state: this.props.status
+					})
+				}
+			
+
+
+
+
+		//debugger; 
+		//let a = this.state;
+		// let b= this.props;
+		 
+	 }
+
 	 render() {
 	
 		 return (
 			 <div>
 				 {!this.state.editMode &&
-				 <div><span onClick={this.activateEditMode}>{this.props.status}</span></div>
+				 <div><span onClick={this.activateEditMode}>{this.props.status || 'Add Status'}</span></div>
 	 				}
 					 {this.state.editMode &&
-				 <div><input autoFocus={true} onBlur={this.deactivateEditMode} value={this.props.status} /></div>
+				 <div><input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} /></div>
 					 }
 			 </div>
 		 )

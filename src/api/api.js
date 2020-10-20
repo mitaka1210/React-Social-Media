@@ -29,10 +29,22 @@ export const usersAPI = {
     );
   },
   getProfile(userId) {
-    return instance.get(`profile/` + userId);
+    console.warn('Obsolete method. Please use profileAPI object');
+    return profileAPI.getProfile(userId);
   },
 };
-
+export const profileAPI = {
+  getProfile(userId) {
+    return instance.get(`profile/` + userId);
+  },
+  getStatus(userId) {
+    return instance.get(`profile/status/` + userId);
+  },
+  //! Четем какво можем да отправяме на сървъра в наши случай то е само status който може да има дължина до 300 символа.Това всичко го пише в документацията на API
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status: status });
+  },
+};
 export const authAPI = {
   me() {
     return instance.get('auth/me');

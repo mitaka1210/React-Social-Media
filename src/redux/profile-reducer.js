@@ -1,9 +1,9 @@
-import { usersAPI } from '../api/api';
+import { usersAPI, profileAPI } from '../api/api';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE ';
-
+const SET_STATUS = 'SET_STATUS';
 let initialState = {
   posts: [
     { id: 1, message: 'Hi, how are u?', likeCounts: 12 },
@@ -14,10 +14,10 @@ let initialState = {
   ],
   newPostText: 'DD',
   profile: null,
+  status: '',
 };
 
 const profileReducer = (state = initialState, action) => {
-  let stateCopy;
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
@@ -50,32 +50,18 @@ const profileReducer = (state = initialState, action) => {
       // stateCopy2.newPostText = action.newText;
       return stateCopy;
     }
-
+    case SET_STATUS: {
+      return {
+        ...state,
+        status: action.status,
+      };
+    }
     case SET_USER_PROFILE: {
       return { ...state, profile: action.profile };
     }
     default:
       return state;
   }
-
-  // if (action.type === ADD_POST){
-  //     let newPost = {
-  //         id: 5,
-  //         message: state.newPostText,
-  //         likesCount: 0,
-  //     };
-  //     let stateCopy1 = {...state};
-  //     stateCopy1.posts = [...state.posts]
-  //     stateCopy1.posts.push(newPost);
-  //     stateCopy1.newPostText = '';
-  //     return stateCopy1
-  // }
-  // else if (action.type === UPDATE_NEW_POST_TEXT) {
-  //     let stateCopy2 = {...state};
-  //     stateCopy2.newPostText = action.newText;
-  //     return stateCopy2
-  //
-  // }
 };
 
 export const addPostActionCreator = () => {
@@ -95,9 +81,36 @@ export const setUserProfile = (profile) => {
     profile: profile,
   };
 };
+
+export const setStatus = (status) => {
+  return {
+    type: SET_STATUS,
+    status: status,
+  };
+};
+
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId).then((response) => {
     dispatch(setUserProfile(response.data));
+    // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
+    // this.props.setTotalUsersCount(response.data.totalCount);
+  });
+};
+//? Взимаме статуса на потребителя
+export const getStatus = (userId) => (dispatch) => {
+  profileAPI.getStatus(userId).then((response) => {
+    dispatch(setStatus(response.data));
+    // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
+    // this.props.setTotalUsersCount(response.data.totalCount);
+  });
+};
+
+export const updateStatus = (status) => (dispatch) => {
+  profileAPI.updateStatus(status).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setStatus(status));
+    }
+
     // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
     // this.props.setTotalUsersCount(response.data.totalCount);
   });

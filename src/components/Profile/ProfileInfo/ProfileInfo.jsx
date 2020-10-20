@@ -20,7 +20,7 @@ function ProfileInfo(props) {
       <div className={style.descriptionBlock}>
         <img src={props.profile.photos.large} alt="" />
         ava + description
-        <ProfileStatus status={'Hello my Friend'}/>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       </div>
       <div className={style.infoUser}>
         <span>{props.profile.aboutMe}</span>
