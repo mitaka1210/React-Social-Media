@@ -1,7 +1,7 @@
 import { usersAPI, profileAPI } from '../api/api';
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 const SET_USER_PROFILE = 'SET_USER_PROFILE ';
 const SET_STATUS = 'SET_STATUS';
 let initialState = {
@@ -12,7 +12,7 @@ let initialState = {
     { id: 4, message: 'Do you want go eat?', likeCounts: 1 },
     { id: 5, message: 'Do you want go eat?', likeCounts: 7 },
   ],
-  newPostText: 'DD',
+
   profile: null,
   status: '',
 };
@@ -21,35 +21,17 @@ const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
-        id: 5,
-        message: state.newPostText,
+        id: 7,
+        message: action.newText,
         likesCount: 0,
       };
-      //*===========================================================================*//
-      // TODO: COPY ARRAY//
-
-      let stateCopy = {
+      return {
         ...state,
         posts: [...state.posts, newPost],
         newPostText: '',
       };
-      // stateCopy1.posts = [...state.posts]
-      // stateCopy1.posts.push(newPost);
-      // stateCopy1.newPostText = '';
-      return stateCopy;
     }
 
-    case UPDATE_NEW_POST_TEXT: {
-      //*==============================================================================*//
-      // TODO: COPY ARRAY//
-
-      let stateCopy = {
-        ...state,
-        newPostText: action.newText,
-      };
-      // stateCopy2.newPostText = action.newText;
-      return stateCopy;
-    }
     case SET_STATUS: {
       return {
         ...state,
@@ -64,17 +46,13 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newText) => {
   return {
     type: ADD_POST,
+    newText: newText,
   };
 };
-export const UpdateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-  };
-};
+
 export const setUserProfile = (profile) => {
   return {
     type: SET_USER_PROFILE,

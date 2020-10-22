@@ -15,7 +15,7 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
+        ...action.payload,
         isAuth: true,
       };
 
@@ -24,16 +24,31 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const setAuthUserData = (userId, email, login) => ({
+export const setAuthUserData = (userId, email, login, isAuth) => ({
   type: SET_USER_DATA,
-  data: { userId, email, login },
+  payload: { userId, email, login, isAuth },
 });
 //! Проверяваме да ли сме се логна ли и ако сме сменяме isAuth: true защото в началото сме казали, че е FALSE
 export const getAuthUserData = () => (dispatch) => {
   authAPI.me().then((response) => {
     if (response.data.resultCode === 0) {
       let { userId, email, login } = response.data.data;
-      dispatch(setAuthUserData(userId, email, login));
+      dispatch(setAuthUserData(userId, email, login, true));
+    }
+  });
+};
+export const login = (email, password, rememberMe) => (dispatch) => {
+  authAPI.login(email, password, rememberMe).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(getAuthUserData());
+    }
+  });
+};
+
+export const logout = () => (dispatch) => {
+  authAPI.logout().then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthUserData(null, null, null, false));
     }
   });
 };
