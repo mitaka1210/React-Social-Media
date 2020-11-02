@@ -8,3 +8,5 @@ export { default as ProfileContainer } from './Profile/ProfileContainer';
 export { default as UsersContainer } from './Users/UsersContainer';
 export { default as DialogsContainer } from './Dialogs/DialogsContainer';
 export { default as HeaderContainer } from './header/HeaderContainer';
+
+export { default as Preloader } from './common/Preloader/Preloader';

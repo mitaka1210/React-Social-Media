@@ -5,3 +5,8 @@
 .formControl.error span {
   color: firebrick;
 }
+.loginError {
+  border: 2px solid red;
+  color: yellowgreen;
+  padding: 3px;
+}
