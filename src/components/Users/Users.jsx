@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
+
 // TODO: SERVER GET/POST/CRUD(CREATE_READE_UPDATE_DELETE);
-import * as axios from 'axios';
+
 function Users(props) {
   //! Разделяме всичките абонати на колко ще се покзват на една страница и получаме страниците колко ще бъдат на брой. Настройката на pageSize(брой хора на една страница е правим в  user-reducer).
 
@@ -23,7 +23,8 @@ function Users(props) {
       <div className={styles.pageNum}>
         {pages.map((p) => {
           return (
-            <span key={p.id}
+            <span
+              key={p.id}
               className={props.currentPage === p ? styles.selectedPAge : null}
               onClick={(e) => {
                 props.onPageChanged(p);
@@ -39,7 +40,7 @@ function Users(props) {
           <span>
             <div className={styles.usersPhoto}>
               <NavLink to={'/profile/' + u.id}>
-                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="" />
+                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='' />
               </NavLink>
             </div>
 

@@ -8,8 +8,16 @@ import {
   getUsers,
   toggleFollowingInProgress,
 } from '../../redux/users-reducer';
-import {compose} from 'redux';
-import {withAuthRedirect} from '../HOC/withAuthRedirect';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../HOC/withAuthRedirect';
+//import {
+//  getUsersForPage,
+//  getUsersPage,
+//  getCurrentUsersPage,
+//  getTotalUsersCount,
+//  getUsersFetching,
+//  getUsersFollowing,
+//} from '../../redux/users-selectors';
 // TODO: IMAGES
 
 import Preloader from '../common/Preloader/Preloader';
@@ -43,9 +51,8 @@ class UsersContainer extends Component {
     );
   }
 }
-
+// Всичко е тук в return  може да се използва чрез props//
 let mapStateToProps = (state) => {
-  // TODO: Всичко е тук в return  може да се използва чрез props.
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
@@ -55,6 +62,16 @@ let mapStateToProps = (state) => {
     followingInProgress: state.usersPage.followingInProgress,
   };
 };
+//let mapStateToProps = (state) => {
+//  return {
+//    users: getUsersForPage(state),
+//    pageSize: getUsersPage(state),
+//    totalUsersCount: getTotalUsersCount(state),
+//    currentPage: getCurrentUsersPage(state),
+//    isFetching: getUsersFetching(state),
+//    followingInProgress: getUsersFollowing(state),
+//  };
+//};
 // TODO: Това е по дългия запис на обекта който е в connect{follow,unfollow,setUsers,setCurrentPage,toggleIsFetching} защото в негоима вграден mapToDispatchProps
 // let mapDispatchToProps = (dispatch) => {
 //     return {
@@ -78,15 +95,16 @@ let mapStateToProps = (state) => {
 //         }
 //     }
 // };
-export default compose (
+export default compose(
   withAuthRedirect,
   connect(mapStateToProps, {
-  followSuccess,
-  unfollowSuccess,
-  setCurrentPage,
-  toggleFollowingInProgress,
-  getUsers,
-}))(UsersContainer);
+    followSuccess,
+    unfollowSuccess,
+    setCurrentPage,
+    toggleFollowingInProgress,
+    getUsers,
+  }),
+)(UsersContainer);
 
 //! Without compose
 //export default connect(mapStateToProps, {

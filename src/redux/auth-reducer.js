@@ -41,7 +41,7 @@ export const getAuthUserData = () => (dispatch) => {
 //TODO: LoginToWebsite това го вземаме от името което сме да ли на формата в LoginForm.jsx( form: 'LoginToWebsite').stopSubmit se получва от redux-form за даможе да кажем да ли сме обърка ли името,паролата или email в примера сме казали само,че  _error глобален( може сме обърка ли името или паролата това се казва така зада се защитим от това някой друг да се логне с acc)и ще ни се изпише текста .
 
 export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe).then((response) => {
+  return authAPI.login(email, password, rememberMe).then((response) => {
     if (response.data.resultCode === 0) {
       dispatch(getAuthUserData());
     } else {
