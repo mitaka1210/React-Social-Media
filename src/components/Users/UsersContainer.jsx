@@ -10,14 +10,14 @@ import {
 } from '../../redux/users-reducer';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../HOC/withAuthRedirect';
-//import {
-//  getUsersForPage,
-//  getUsersPage,
-//  getCurrentUsersPage,
-//  getTotalUsersCount,
-//  getUsersFetching,
-//  getUsersFollowing,
-//} from '../../redux/users-selectors';
+import {
+  getUsersForPage,
+  getUsersPage,
+  getCurrentUsersPage,
+  getTotalUsersCount,
+  getUsersFetching,
+  getUsersFollowing,
+} from '../../redux/users-selectors';
 // TODO: IMAGES
 
 import Preloader from '../common/Preloader/Preloader';
@@ -52,26 +52,26 @@ class UsersContainer extends Component {
   }
 }
 // Всичко е тук в return  може да се използва чрез props//
-let mapStateToProps = (state) => {
-  return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
-  };
-};
 //let mapStateToProps = (state) => {
 //  return {
-//    users: getUsersForPage(state),
-//    pageSize: getUsersPage(state),
-//    totalUsersCount: getTotalUsersCount(state),
-//    currentPage: getCurrentUsersPage(state),
-//    isFetching: getUsersFetching(state),
-//    followingInProgress: getUsersFollowing(state),
+//    users: state.usersPage.users,
+//    pageSize: state.usersPage.pageSize,
+//    totalUsersCount: state.usersPage.totalUsersCount,
+//    currentPage: state.usersPage.currentPage,
+//    isFetching: state.usersPage.isFetching,
+//    followingInProgress: state.usersPage.followingInProgress,
 //  };
 //};
+let mapStateToProps = (state) => {
+  return {
+    users: getUsersForPage(state),
+    pageSize: getUsersPage(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentUsersPage(state),
+    isFetching: getUsersFetching(state),
+    followingInProgress: getUsersFollowing(state),
+  };
+};
 // TODO: Това е по дългия запис на обекта който е в connect{follow,unfollow,setUsers,setCurrentPage,toggleIsFetching} защото в негоима вграден mapToDispatchProps
 // let mapDispatchToProps = (dispatch) => {
 //     return {

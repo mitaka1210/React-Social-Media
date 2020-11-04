@@ -19,6 +19,7 @@ let initialState = {
     { id: 4, message: 'What is your plan for today?' },
     { id: 5, message: 'What ' },
   ],
+  newMessageText: '',
 };
 const dialogsReducer = (state = initialState, action) => {
   // TODO: обявяваме променлива: stateCopy
@@ -32,6 +33,7 @@ const dialogsReducer = (state = initialState, action) => {
 
         // TODO: добавяме в messages нов масив с стария самив и в края добавяме това което е push при натискане на бутона SEND
         messages: [...state.messages, { id: 6, message: body }],
+        newMessageText: '',
       };
 
       return stateCopy;
