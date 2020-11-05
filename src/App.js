@@ -11,10 +11,10 @@ import {
   NavBar,
 } from './components';
 import Preloader from './components//common/Preloader/Preloader.jsx';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/app-reducer.js';
-
+import store from './redux/redux-store';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
 class App extends Component {

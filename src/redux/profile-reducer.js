@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE ';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 let initialState = {
   posts: [
     { id: 1, message: 'Hi, how are u?', likeCounts: 12 },
@@ -41,6 +42,9 @@ const profileReducer = (state = initialState, action) => {
     case SET_USER_PROFILE: {
       return { ...state, profile: action.profile };
     }
+    case DELETE_POST: {
+      return { ...state, post: state.post.filter((p) => p.id != action.id) };
+    }
     default:
       return state;
   }
@@ -64,6 +68,12 @@ export const setStatus = (status) => {
   return {
     type: SET_STATUS,
     status: status,
+  };
+};
+export const deletePost = (postId) => {
+  return {
+    type: DELETE_POST,
+    postId: postId,
   };
 };
 
