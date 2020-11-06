@@ -76,32 +76,52 @@ export const deletePost = (postId) => {
     postId: postId,
   };
 };
-
-export const getUserProfile = (userId) => (dispatch) => {
-  usersAPI.getProfile(userId).then((response) => {
-    dispatch(setUserProfile(response.data));
-    // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
-    // this.props.setTotalUsersCount(response.data.totalCount);
-  });
+//? async await
+export const getUserProfile = (userId) => async (dispatch) => {
+  let response = await usersAPI.getProfile(userId);
+  dispatch(setUserProfile(response.data));
+  // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
+  // this.props.setTotalUsersCount(response.data.totalCount);
 };
+//? .then
+//export const getUserProfile = (userId) => (dispatch) => {
+//  usersAPI.getProfile(userId).then((response) => {
+//    dispatch(setUserProfile(response.data));
+// TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
+// this.props.setTotalUsersCount(response.data.totalCount);
+//  });
+//};
 //? Взимаме статуса на потребителя
-export const getStatus = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId).then((response) => {
-    dispatch(setStatus(response.data));
-    // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
-    // this.props.setTotalUsersCount(response.data.totalCount);
-  });
+//? async await
+export const getStatus = (userId) => async (dispatch) => {
+  let response = await profileAPI.getStatus(userId);
+  dispatch(setStatus(response.data));
+};
+//? .then
+//export const getStatus = (userId) =>  (dispatch) => {
+//  profileAPI.getStatus(userId).then((response) => {
+//    dispatch(setStatus(response.data));
+
+//
+//  });
+//};
+
+//? async await
+export const updateStatus = (status) => async (dispatch) => {
+  let response = await profileAPI.updateStatus(status);
+  if (response.data.resultCode === 0) {
+    dispatch(setStatus(status));
+  }
 };
 
-export const updateStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setStatus(status));
-    }
+//? .then
+//export const updateStatus = (status) => (dispatch) => {
+//  profileAPI.updateStatus(status).then((response) => {
+//    if (response.data.resultCode === 0) {
+//      dispatch(setStatus(status));
+//    }
 
-    // TODO: Akо искам да взема всички страници от сървъра трябва да разкоментирам всичко свързано с setTotalUsersCount
-    // this.props.setTotalUsersCount(response.data.totalCount);
-  });
-};
+//  });
+//};
 
 export default profileReducer;
