@@ -32,7 +32,7 @@ class UsersContainer extends Component {
     this.props.getUsers(pageNumber, this.props.pageSize);
   };
 
-  render() {
+  render() {  
     return (
       <>
         {this.props.isFetching ? <Preloader /> : null}

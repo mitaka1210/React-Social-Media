@@ -2,8 +2,8 @@ import { usersAPI } from '../api/api';
 import { updateObjectInArray } from '../utils/Helper/users-reducer-helper';
 //! Избягване на грешки при изписването на имената на case:
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
+const Follow = 'FOLLOW';
+const Unfollow = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
@@ -22,7 +22,7 @@ const usersReducer = (state = initialState, action) => {
   // TODO: обявяваме променлива: stateCopy
 
   switch (action.type) {
-    case FOLLOW: {
+    case Follow: {
       return {
         ...state,
         users: updateObjectInArray(state.users, action.userId, 'id', { followed: true }),
@@ -38,7 +38,7 @@ const usersReducer = (state = initialState, action) => {
       };
     }
 
-    case UNFOLLOW: {
+    case Unfollow: {
       return {
         ...state,
         users: updateObjectInArray(state.users, action.userId, 'id', { followed: false }),
@@ -92,11 +92,11 @@ const usersReducer = (state = initialState, action) => {
 };
 // TODO: КРАТКИЯ ВАРИАНТ НА ДВАТА ACTION доло
 
-export const followSuccess = (userId) => ({ type: FOLLOW, userId });
+export const followSuccess = (userId) => ({ type: Follow, userId });
 
 export const unfollowSuccess = (userId) => {
   return {
-    type: UNFOLLOW,
+    type: Unfollow,
     userId: userId,
   };
 };

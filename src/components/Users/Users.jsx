@@ -1,26 +1,42 @@
 import React from 'react';
 import styles from './users.module.css';
-import userPhoto from '../../assets/images/user.png';
-import { NavLink } from 'react-router-dom';
+
+import User from './User/User';
+import PaginationPages from '../common/PaginationPage/PaginationPages';
 
 // TODO: SERVER GET/POST/CRUD(CREATE_READE_UPDATE_DELETE);
 
-function Users(props) {
+function Users({
+  currentPage,
+  Follow,
+  Unfollow,
+  totalUsersCount,
+  users,
+  onPageChanged,
+  pageSize,
+  ...props
+}) {
   //! Разделяме всичките абонати на колко ще се покзват на една страница и получаме страниците колко ще бъдат на брой. Настройката на pageSize(брой хора на една страница е правим в  user-reducer).
 
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
+  //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  //let pages = [];
 
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
+  //for (let i = 1; i <= pagesCount; i++) {
+  //  pages.push(i);
+  //}
   //  pagesCount.forEach( e=>{
   //     pages.push(e);
   // })
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.pageNum}>
+      <PaginationPages
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+      />
+      {/*<div className={styles.pageNum}>
         {pages.map((p) => {
           return (
             <span
@@ -33,50 +49,57 @@ function Users(props) {
             </span>
           );
         })}
-      </div>
+      </div>*/}
 
-      {props.users.map((u) => (
-        <div key={u.id}>
-          <span>
-            <div className={styles.usersPhoto}>
-              <NavLink to={'/profile/' + u.id}>
-                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='' />
-              </NavLink>
-            </div>
+      {users.map((u) => (
+        <User
+          user={u}
+          followingInProgress={props.followingInProgress}
+          unfollow={props.unfollow}
+          follow={props.follow}
+          key={u.id}
+        />
+        //<div key={u.id}>
+        //  <span>
+        //    <div className={styles.usersPhoto}>
+        //      <NavLink to={'/profile/' + u.id}>
+        //        <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='' />
+        //      </NavLink>
+        //    </div>
 
-            <div>
-              {u.followed ? (
-                <button
-                  disabled={props.followingInProgress.some((id) => id === u.id)}
-                  onClick={() => {
-                    props.unfollow(u.id);
-                  }}>
-                  Unfollow
-                </button>
-              ) : (
-                <button
-                  disabled={props.followingInProgress.some((id) => id === u.id)}
-                  onClick={() => {
-                    props.follow(u.id);
-                  }}>
-                  Follow
-                </button>
-              )}
-            </div>
-          </span>
-          <span>
-            <span>
-              <div>{u.name}</div>
-              <div> {u.status}</div>
-            </span>
-          </span>
-          <span>
-            <div>
-              <div>{'u.location.country'}</div>
-              <div>{'u.location.city'}</div>
-            </div>
-          </span>
-        </div>
+        //    <div>
+        //      {u.followed ? (
+        //        <button
+        //          disabled={props.followingInProgress.some((id) => id === u.id)}
+        //          onClick={() => {
+        //            props.unfollow(u.id);
+        //          }}>
+        //          Unfollow
+        //        </button>
+        //      ) : (
+        //        <button
+        //          disabled={props.followingInProgress.some((id) => id === u.id)}
+        //          onClick={() => {
+        //            props.follow(u.id);
+        //          }}>
+        //          Follow
+        //        </button>
+        //      )}
+        //    </div>
+        //  </span>
+        //  <span>
+        //    <span>
+        //      <div>{u.name}</div>
+        //      <div> {u.status}</div>
+        //    </span>
+        //  </span>
+        //  <span>
+        //    <div>
+        //      <div>{'u.location.country'}</div>
+        //      <div>{'u.location.city'}</div>
+        //    </div>
+        //  </span>
+        //</div>
       ))}
     </div>
   );
