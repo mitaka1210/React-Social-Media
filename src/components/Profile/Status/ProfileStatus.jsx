@@ -1,75 +1,66 @@
-import React, { Component } from 'react'
-import styles from '../ProfileInfo/profileinfo.module.css';
+import React, { Component } from 'react';
 
- 
- export class ProfileStatus extends Component {
+class ProfileStatus extends Component {
+  state = {
+    editMode: false,
+    status: this.props.status,
+  };
 
+  activateEditMode = () => {
+    console.log(this.state.editMode); //!  editMode === FALSE
+    this.setState({
+      editMode: true,
+    });
+    console.log(this.state.editMode); //! editMode  === FALSE
+  };
+  deactivateEditMode = () => {
+    console.log(this.state.editMode); //!  editMode === FALSE
+    this.setState({
+      editMode: false,
+    });
+    this.props.updateStatus(this.state.status);
+    console.log(this.state.editMode); //! editMode  === FALSE
+  };
+  onStatusChange = (e) => {
+    this.setState({
+      status: e.currentTarget.value,
+    });
+  };
 
-	 state= {
-		 editMode: false,
-		 status: this.props.status
-	 }
+  //TODO: синхронизираме status
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        state: this.props.status,
+      });
+    }
 
-	 activateEditMode = () => {
-		 console.log(this.state.editMode) //!  editMode === FALSE
-		 this.setState(
-			 {
-				editMode: true
-			 }
-		 )
-		 console.log(this.state.editMode) //! editMode  === FALSE
-		
-	 }
-	 deactivateEditMode = () => {
-		 console.log(this.state.editMode) //!  editMode === FALSE
-		 this.setState(
-			 {
-				editMode: false,
-				
-			 }
-		 )
-		 this.props.updateStatus(this.state.status);
-		 console.log(this.state.editMode) //! editMode  === FALSE
-		
-	 }
-	 onStatusChange = (e) => {
-			this.setState({
-				status: e.currentTarget.value
-			});
-			
-	 }
+    //debugger;
+    //let a = this.state;
+    // let b= this.props;
+  }
 
-	 	//TODO: синхронизираме status
-	 componentDidUpdate(prevProps, prevState) {
-				if(prevProps.status !== this.props.status) {
-					this.setState({
-						state: this.props.status
-					})
-				}
-			
+  render() {
+    return (
+      <div>
+        {!this.state.editMode && (
+          <div>
+            <span onClick={this.activateEditMode}>{this.props.status || 'Add Status'}</span>
+          </div>
+        )}
+        {this.state.editMode && (
+          <div>
+            <input
+              onChange={this.onStatusChange}
+              autoFocus={true}
+              onBlur={this.deactivateEditMode}
+              value={this.state.status}
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
+}
 
-
-
-
-		//debugger; 
-		//let a = this.state;
-		// let b= this.props;
-		 
-	 }
-
-	 render() {
-	
-		 return (
-			 <div>
-				 {!this.state.editMode &&
-				 <div><span onClick={this.activateEditMode}>{this.props.status || 'Add Status'}</span></div>
-	 				}
-					 {this.state.editMode &&
-				 <div><input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} /></div>
-					 }
-			 </div>
-		 )
-	 }
- };
- 
- export default ProfileStatus;
+export default ProfileStatus;
