@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './users.module.css';
+import styles from './users.module.scss';
 
 import User from './User/User';
 import PaginationPages from '../common/PaginationPage/PaginationPages';
@@ -30,12 +30,6 @@ function Users({
 
   return (
     <div className={styles.mainContainer}>
-      <PaginationPages
-        currentPage={currentPage}
-        onPageChanged={onPageChanged}
-        totalUsersCount={totalUsersCount}
-        pageSize={pageSize}
-      />
       {/*<div className={styles.pageNum}>
         {pages.map((p) => {
           return (
@@ -59,6 +53,7 @@ function Users({
           follow={props.follow}
           key={u.id}
         />
+
         //<div key={u.id}>
         //  <span>
         //    <div className={styles.usersPhoto}>
@@ -101,6 +96,12 @@ function Users({
         //  </span>
         //</div>
       ))}
+      <PaginationPages
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+      />
     </div>
   );
 }

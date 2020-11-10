@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../myPosts.module.css';
+import style from '../myPosts.module.scss';
 import { reduxForm, Field } from 'redux-form';
 import FormsControl from '../../../common/FormControl/FormsControl';
 import { requiredField, maxLengthCreator } from '../../../../utils/Validations/validators';

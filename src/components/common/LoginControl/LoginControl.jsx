@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../FormControl/formControl.module.css';
+import styles from '../FormControl/formControl.module.scss';
 function LoginControl({ input, meta, ...props }) {
   const hasError = meta.touched && meta.error;
 

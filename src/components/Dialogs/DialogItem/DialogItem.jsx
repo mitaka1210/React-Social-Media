@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './../dialogs.module.css';
+import style from './../dialogs.module.scss';
 import { NavLink } from 'react-router-dom';
 
 function DialogItem(props) {
@@ -9,7 +9,6 @@ function DialogItem(props) {
     <div>
       <ul>
         <li className={style.dialog + ' ' + style.active}>
-
           <NavLink to={path}>{props.name}</NavLink>
         </li>
       </ul>

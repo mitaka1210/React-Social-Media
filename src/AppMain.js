@@ -1,18 +1,18 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import './index.css';
-import store from './redux/redux-store';
-import { BrowserRouter as Router } from 'react-router-dom';
-import App from './App';
+//import React from 'react';
+//import { Provider } from 'react-redux';
 
-function AppMain() {
-  return (
-    <Router>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </Router>
-  );
-}
+//import store from './redux/redux-store';
+//import { BrowserRouter as Router } from 'react-router-dom';
+//import AppContainer from './App';
 
-export default AppMain;
+//function AppMain() {
+//  return (
+//    <Router>
+//      <Provider store={store}>
+//        <AppContainer />
+//      </Provider>
+//    </Router>
+//  );
+//}
+
+//export default AppMain;

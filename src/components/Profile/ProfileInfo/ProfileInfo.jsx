@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './profileinfo.module.css';
+import style from './profileinfo.module.scss';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusF from '../Status/ProfileStatusF';
 

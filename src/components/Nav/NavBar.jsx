@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './nav.module.css';
+import style from './nav.module.scss';
 import { BrowserRouter as Router, NavLink, Link } from 'react-router-dom';
 
 function NavBar() {
@@ -7,32 +7,32 @@ function NavBar() {
     <nav className={style.nav}>
       <ul className={style.items}>
         <li className={style.item}>
-          <NavLink activeClassName={style.activeLink} to="/profile">
+          <NavLink activeClassName={style.activeLink} to='/profile'>
             Profile
           </NavLink>
         </li>
         <li className={style.item}>
-          <NavLink to="/dialogs" activeClassName={style.activeLink}>
+          <NavLink to='/dialogs' activeClassName={style.activeLink}>
             Messages
           </NavLink>
         </li>
         <li className={style.item}>
-          <NavLink to="/news" activeClassName={style.active}>
+          <NavLink to='/news' activeClassName={style.active}>
             News
           </NavLink>
         </li>
         <li className={style.item}>
-          <NavLink to="/music" activeClassName={style.activeLink}>
+          <NavLink to='/music' activeClassName={style.activeLink}>
             Music
           </NavLink>
         </li>
         <li className={style.item}>
-          <NavLink to="/settings" activeClassName={style.activeLink}>
+          <NavLink to='/settings' activeClassName={style.activeLink}>
             Settings
           </NavLink>
         </li>
         <li className={style.item}>
-          <NavLink to="/users" activeClassName={style.activeLink}>
+          <NavLink to='/users' activeClassName={style.activeLink}>
             Users
           </NavLink>
         </li>

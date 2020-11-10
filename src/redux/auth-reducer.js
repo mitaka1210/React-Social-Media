@@ -6,7 +6,7 @@ let initialState = {
   userId: null,
   email: null,
   login: null,
-  //isFetching: false,
+
   isAuth: false,
 };
 
@@ -28,23 +28,23 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
   payload: { userId, email, login, isAuth },
 });
 //! Проверяваме да ли сме се логна ли и ако сме сменяме isAuth: true защото в началото сме казали, че е FALSE
-//export const getAuthUserData = () => (dispatch) => {
-//  return authAPI.me()
-//  .then((response) => {
-//    if (response.data.resultCode === 0) {
-//      let { userId, email, login } = response.data.data;
-//      dispatch(setAuthUserData(userId, email, login, true));
-//    }
-//  });
-//};
-export const getAuthUserData = () => async (dispatch) => {
-  let response = await authAPI.me();
-
-  if (response.data.resultCode === 0) {
-    let { userId, email, login } = response.data.data;
-    dispatch(setAuthUserData(userId, email, login, true));
-  }
+export const getAuthUserData = () => (dispatch) => {
+  return authAPI.me().then((response) => {
+    if (response.data.resultCode === 0) {
+      let { userId, email, login } = response.data.data;
+      dispatch(setAuthUserData(userId, email, login, true));
+    }
+  });
 };
+
+//export const getAuthUserData = () => async (dispatch) => {
+//  let response = await authAPI.me();
+
+//  if (response.data.resultCode === 0) {
+//    let { id, login, email } = response.data.data;
+//    dispatch(setAuthUserData(id, email, login, true));
+//  }
+//};
 
 //!====== LOGIN AUTH check=======
 //TODO: LoginToWebsite това го вземаме от името което сме да ли на формата в LoginForm.jsx( form: 'LoginToWebsite').stopSubmit se получва от redux-form за даможе да кажем да ли сме обърка ли името,паролата или email в примера сме казали само,че  _error глобален( може сме обърка ли името или паролата това се казва така зада се защитим от това някой друг да се логне с acc)и ще ни се изпише текста .

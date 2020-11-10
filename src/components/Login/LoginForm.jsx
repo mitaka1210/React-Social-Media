@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import LoginControl from '../common/LoginControl/LoginControl';
 import { requiredField } from '../../utils/Validations/validators';
-import styles from '../common/FormControl/formControl.module.css';
+import styles from '../common/FormControl/formControl.module.scss';
 import { createField } from './CreateField';
 export const LoginReduxForm = reduxForm({
   //! a unique name for the form(униклано име за формата се дава )

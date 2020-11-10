@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './myPosts.module.css';
+import style from './myPosts.module.scss';
 import Post from './Post/Post';
 import { AddNewPostForm } from './PostFormRedux/PostFormRedux';
 

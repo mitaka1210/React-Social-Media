@@ -1,0 +1,21 @@
+:root {
+  --background-color-pagi: red;
+}
+%tplborder {
+  border-bottom: 5px dashed black;
+}
+
+$gg: red;
+@mixin fontZ($f, $G) {
+  font-size: $f;
+  margin-left: $G;
+}
+.paginator {
+  background-color: var(--background-color-pagi, green);
+}
+.selectedPage {
+  font-size: 2em;
+  cursor: pointer;
+
+  font-weight: bold;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
-import style from './news.module.css';
+import styles from './news.module.scss';
 function News() {
   return (
     <div>
-      <h6 className = {style.news}>News</h6>
+      <h6 className={styles.news}>News</h6>
     </div>
   );
 }
